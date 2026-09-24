@@ -1,0 +1,27 @@
+﻿@model List<WarehouseManager.Models.Product>
+<div class="container mt-4">
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label>Prodotto</label>
+        <select name="productId" class="form-control">
+            @foreach (var product in Model)
+            {
+                <option value="@product.Id">@product.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Tipo</label>
+        <select name="type" class="form-control">
+            <option value="In">Entrata</option>
+            <option value="Out">Uscita</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Quantità</label>
+        <input type="number" name="quantity" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Registra movimento</button>
+</form>
+</div>

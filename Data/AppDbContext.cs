@@ -16,6 +16,7 @@ namespace WarehouseManager.Data
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<StockMovement> StockMovements { get; set; }
 
 
     }

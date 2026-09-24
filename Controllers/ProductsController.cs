@@ -17,14 +17,14 @@ namespace WarehouseManager.Controllers
 
         public IActionResult Index(string searchString)
         {
-            var products = _context.Products.ToList();
+            var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                products = products
-                    .Where(p => p.Name.ToLower().Contains(searchString.ToLower()))
-                    .ToList();
+                query = query.Where(p => p.Name.ToLower().Contains(searchString.ToLower()));
             }
+
+            var products = query.ToList();
 
             return View(products);
         }
