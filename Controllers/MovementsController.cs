@@ -26,7 +26,7 @@ namespace WarehouseManager.Controllers
         public IActionResult Create(int productId, MovementType type, int quantity)
         {
             var product = _context.Products.Find(productId);
-
+            
             if (product == null)
             {
                 return NotFound();
@@ -42,7 +42,7 @@ namespace WarehouseManager.Controllers
             }
             else
             {
-                return BadRequest("Quantità non disponibile in magazzino.");
+                return BadRequest("Quantità non disponibile in magazzino, numero disponibile: " + product.Quantity);
             }
 
             _context.SaveChanges();
