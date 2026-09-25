@@ -45,7 +45,55 @@ namespace WarehouseManager.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public IActionResult Delete(int dbID)
+        {
+            var product = _context.Products.Find(dbID);
+            if (product == null) { 
+            return NotFound();
+            }
+            else 
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+            }
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int dbId)
+        {
+            var product = _context.Products.Find(dbId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+
+
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int dbId, Product product)
+        {
+            var prodotto = _context.Products.Find(dbId);
+            if (prodotto == null)
+            {
+                return NotFound();
+            }
+            prodotto.Name = product.Name;
+            prodotto.Price = product.Price;
+            prodotto.Quantity = product.Quantity;
+            prodotto.Category = product.Category;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+
+
+        }
 
 
     }

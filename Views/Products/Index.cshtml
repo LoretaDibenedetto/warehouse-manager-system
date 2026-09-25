@@ -27,11 +27,10 @@
                     <th>Price</th>
                     <th>Category</th>
                     <th>Quantity</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-
-
                 @foreach (var product in Model)
                 {
                     <tr>
@@ -39,12 +38,16 @@
                         <td>@product.Price</td>
                         <td>@product.Category</td>
                         <td>@product.Quantity</td>
+                        <td>
+                            <a asp-controller="Products" asp-action="Edit" asp-route-dbId="@product.Id" class="btn btn-sm btn-outline-primary">Modifica</a>
+                            <form asp-controller="Products" asp-action="Delete" method="post" style="display:inline">
+                                <input type="hidden" name="dbID" value="@product.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Cancella</button>
+                            </form>
+                        </td>
                     </tr>
                 }
-
-
             </tbody>
         </table>
     }
-    
 </div>

@@ -26,11 +26,12 @@ namespace WarehouseManager.Controllers
         public IActionResult Create(int productId, MovementType type, int quantity)
         {
             var product = _context.Products.Find(productId);
-            
+
             if (product == null)
             {
                 return NotFound();
             }
+            var currentQuantity = product.Quantity;
 
             if (type == MovementType.In)
             {
@@ -42,11 +43,12 @@ namespace WarehouseManager.Controllers
             }
             else
             {
-                return BadRequest("Quantità non disponibile in magazzino, numero disponibile: " + product.Quantity);
+                return BadRequest("Quantità non disponibile in magazzino, numero disponibile: " + currentQuantity);
             }
 
             _context.SaveChanges();
             return RedirectToAction("Index", "Products");
         }
-      }
+
+    }
     }
