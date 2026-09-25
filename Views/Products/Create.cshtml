@@ -1,10 +1,10 @@
 ﻿@model WarehouseManager.Models.Product
 
 <div class="container mt-4">
-    <h1>Edit Product</h1>
+    <h1>Create Product</h1>
 
-    <form asp-action="Edit" method="post" class="w-50">
-        <input type="hidden" name="dbId" value="@Model.Id" />
+    <form asp-action="Create" method="post" class="w-50">
+       
         <div class="mb-3">
             <label asp-for="Name" class="form-label"></label>
             <input asp-for="Name" class="form-control" />
