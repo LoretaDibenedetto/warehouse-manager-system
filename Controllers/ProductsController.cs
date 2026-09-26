@@ -40,10 +40,14 @@ namespace WarehouseManager.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            _context.Products.Add(product);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+                if (ModelState.IsValid) { 
+                _context.Products.Add(product);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+              }
+            return View(product);
         }
+        
 
         [HttpPost]
         public IActionResult Delete(int dbID)
@@ -78,20 +82,25 @@ namespace WarehouseManager.Controllers
         [HttpPost]
         public IActionResult Edit(int dbId, Product product)
         {
-            var prodotto = _context.Products.Find(dbId);
-            if (prodotto == null)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                var prodotto = _context.Products.Find(dbId);
+                if (prodotto == null)
+                {
+                    return NotFound();
+                }
+                prodotto.Name = product.Name;
+                prodotto.Price = product.Price;
+                prodotto.Quantity = product.Quantity;
+                prodotto.Category = product.Category;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
             }
-            prodotto.Name = product.Name;
-            prodotto.Price = product.Price;
-            prodotto.Quantity = product.Quantity;
-            prodotto.Category = product.Category;
 
-            _context.SaveChanges();
-
-            return RedirectToAction("Index");
-
+            product.Id = dbId;
+            return View(product);
 
         }
 

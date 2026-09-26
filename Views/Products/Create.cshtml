@@ -4,7 +4,7 @@
     <h1>Create Product</h1>
 
     <form asp-action="Create" method="post" class="w-50">
-       
+        <div class="alert alert-danger" asp-validation-summary="All"></div>
         <div class="mb-3">
             <label asp-for="Name" class="form-label"></label>
             <input asp-for="Name" class="form-control" />

@@ -4,6 +4,7 @@
     <h1>Edit Product</h1>
 
     <form asp-action="Edit" method="post" class="w-50">
+      
         <input type="hidden" name="dbId" value="@Model.Id" />
         <div class="mb-3">
             <label asp-for="Name" class="form-label"></label>
