@@ -1,0 +1,24 @@
+﻿@model List<WarehouseManager.Models.StockMovement>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movement in Model)
+        {
+            <tr>
+                <td>@movement.Product.Name</td>
+                <td>@movement.Type</td>
+                <td>@movement.Quantity</td>
+                <td>@movement.Date</td>
+            </tr>
+        }
+    </tbody>
+</table>

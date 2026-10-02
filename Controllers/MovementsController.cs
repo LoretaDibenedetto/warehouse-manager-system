@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WarehouseManager.Data;
 using WarehouseManager.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System;
 
@@ -15,6 +16,18 @@ namespace WarehouseManager.Controllers
         {
             _context = context;
         }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var movements = _context.StockMovements
+                .Include(m => m.Product)    
+                .OrderByDescending(c => c.Date)
+                .ToList();
+
+            return View(movements);
+        }
+
 
 
         [HttpGet]

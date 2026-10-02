@@ -56,7 +56,7 @@ namespace WarehouseManager.Controllers
             if (product == null) { 
             return NotFound();
             }
-            else 
+            
             {
                 _context.Products.Remove(product);
                 _context.SaveChanges();
