@@ -4,7 +4,7 @@
         <option value="0">Tutti</option>
         @foreach (var product in ViewBag.Products)
         {
-            <option value="@product.Id">@product.Name</option>
+            <option value="@product.Id" selected="@(product.Id == ViewBag.SelectedProductId)">@product.Name</option>
         }
     </select>
     <button type="submit" class="btn btn-primary">Filtra</button>

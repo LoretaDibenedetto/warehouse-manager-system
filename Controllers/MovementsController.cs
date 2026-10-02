@@ -31,6 +31,7 @@ namespace WarehouseManager.Controllers
                 .OrderByDescending(c => c.Date)
                 .ToList();
             ViewBag.Products = _context.Products.ToList();
+            ViewBag.SelectedProductId = productId;
             return View(movements);
         }
 
