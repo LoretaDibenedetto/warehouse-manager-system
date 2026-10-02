@@ -18,13 +18,19 @@ namespace WarehouseManager.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int productId)
         {
-            var movements = _context.StockMovements
-                .Include(m => m.Product)    
+            var query = _context.StockMovements.Include(m => m.Product).AsQueryable();
+            if(productId > 0)
+            {
+                query = query.Where(p => p.ProductId == productId);
+            }
+           var movements =  query
+                
+               
                 .OrderByDescending(c => c.Date)
                 .ToList();
-
+            ViewBag.Products = _context.Products.ToList();
             return View(movements);
         }
 

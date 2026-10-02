@@ -1,5 +1,14 @@
 ﻿@model List<WarehouseManager.Models.StockMovement>
-
+<form asp-action="Index" method="get" class="mb-3 d-flex gap-2">
+    <select name="productId" class="form-control">
+        <option value="0">Tutti</option>
+        @foreach (var product in ViewBag.Products)
+        {
+            <option value="@product.Id">@product.Name</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-primary">Filtra</button>
+</form>
 
 <table class="table">
     <thead>
