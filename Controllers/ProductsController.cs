@@ -15,13 +15,18 @@ namespace WarehouseManager.Controllers
         }
 
 
-        public IActionResult Index(string searchString)
+        public IActionResult Index(string searchString, int soglia)
         {
             var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 query = query.Where(p => p.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+            if(soglia > 0)
+            {
+                query = query.Where(p => p.Quantity >= soglia);
             }
 
             var products = query.ToList();
